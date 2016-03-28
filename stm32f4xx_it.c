@@ -37,10 +37,6 @@
 
 /* USER CODE BEGIN 0 */
 extern uint16_t sys_tick_counter;
-extern uint8_t red_bool;
-extern uint8_t green_bool;
-extern uint8_t blue_bool;
-extern uint8_t orange_bool;
 extern UART_HandleTypeDef huart2;
 
 
@@ -87,11 +83,6 @@ void SysTick_Handler(void)
 //
 		 uint16_t adc_cor = (adc_val >> 3)* 2.75;
 		TIM4->CCR2= 800 + adc_cor;
-
-		//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
-		//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
-		//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-		//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_15);
 		sys_tick_counter = 0;
 		//HAL_UART_Transmit(&huart2, (uint8_t *) "9\n\r", 3,10);
 
@@ -126,18 +117,6 @@ void RCC_IRQHandler(void)
 void EXTI0_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI0_IRQn 0 */
-	red_bool = 0;
-	green_bool = 0;
-	blue_bool = 0;
-	orange_bool = 0;
-
-//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
-//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_RESET);
-//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_RESET);
-//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_RESET);
-	//HAL_UART_Transmit(&huart2, (uint8_t *) "BUTTON PRESSED\n\r", 16,10);
-
-
 
   /* USER CODE END EXTI0_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
@@ -185,16 +164,6 @@ void TIM4_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM4_IRQn 0 */
 
-	//if (TIM4 != RESET)
-	//{
-
-//		HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
-//								HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
-//								HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-//								HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_15);
-
-
-	//}
   /* USER CODE END TIM4_IRQn 0 */
   HAL_TIM_IRQHandler(&htim4);
   /* USER CODE BEGIN TIM4_IRQn 1 */
@@ -208,10 +177,6 @@ void TIM4_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */
-						//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_12);
-						//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
-						//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-						//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_15);
 
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
